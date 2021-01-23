@@ -1,0 +1,12 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+<h1>Title</h1>
+{% for s in search_result %}
+  <h2> <a href="{% url 'Book_detail' pk=s.pk %}"> {{ s.title|linebreaksbr }}</a> </h2>
+  <p>{{ s.author|linebreaksbr }}</p>
+  <a href="{% url 'Book_detail' pk=s.pk %}">Comments: {{ s.comments.count|linebreaksbr }}</a> 
+
+{% endfor %}
+  
+{% endblock content %}

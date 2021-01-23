@@ -1,0 +1,27 @@
+{% extends 'book/base.html' %}
+
+{% block content %}
+    <div class="post">
+        
+        <h2>{{ book.title }}</h2>
+        <p>Author : {{ book.author|linebreaksbr }}</p>
+        <p>ISBN : {{ book.isbn|linebreaksbr }}</p>
+        <p>PUBLICATION YEAR : {{ book.year|linebreaksbr}}</p>
+        
+        <p>Total Number Of Rating : {{ data1 }}</p>
+        <p>average_rating : {{ data1 }}</p>
+    </div>
+    <hr>
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=book.pk %}">Add comment</a>
+     {% for comment in book.comments.all %}
+          <div class="comment">
+               <div class="date"> Date of creation : {{ comment.created_date }}</div>
+               <strong> Author : {{ comment.author }}</strong>
+               <p> Description : {{ comment.text|linebreaks }}</p>
+               <p>Rating : {{ comment.rating| linebreaks }}</p>
+          </div>
+          {% empty %}
+             <p>No comments here yet :(</p>
+     {% endfor %}
+     
+{% endblock %}

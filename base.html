@@ -1,0 +1,52 @@
+{% load static %}
+<html>
+    <head>
+           <title>Book Review Website</title>
+           <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+           <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+           <link href='//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+           <link rel="stylesheet" href="{% static 'css/book.css' %}">
+    </head>
+    <body>
+           <div class="page-header">
+                {% if user.is_authenticated %}
+                         <p class="top-menu"> <a href="{% url 'logout' %}">Log out</a> </p>
+                         
+                         <p class="top-menu"> <a class="btn btn-default" href="{% url 'remove_900'  %}"><span class="glyphicon glyphicon-remove"></span></a> </p>
+                         <p class="top-menu"> <small>{{ user.username}}</small> </p>
+                {% else %}
+                         <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+                {% endif %}
+
+
+                 <h1><a href="/">Book Review Website</a></h1>
+           </div>
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    
+                    {% block content %}
+                
+                    {% endblock %}
+
+                </div>
+                <div class="col-md-1">
+
+                </div>
+
+                <div class="col-md-3"> 
+                    <p>link</p>
+                    <ul>
+                            <li><a href="{% url 'remove_900' %}">Delete All Book</a> </li>
+                            <li><a href="{% url 'export' %}">EXPORT</a> </li>
+                            <li><a href="{% url 'search' %}">Search Book</a> </li>
+                            <li><a href="{% url 'signup' %}">Signup</a> </li>
+                    </ul>
+                </div>
+
+            </div>
+            
+        </div>
+    </body>
+</html>
